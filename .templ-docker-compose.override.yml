@@ -1,0 +1,8 @@
+version: "3.2"
+
+services:
+    devcode-bdaq53: 
+        volumes: 
+            - type: bind
+              source: @CODEDIR_BDAQ
+              target: /bdaq53/bdaq53

@@ -13,8 +13,11 @@ $ git clone https://github.com/duartej/dockerfiles-bdaq53a.git
 $ cd dockerfiles-bdaq53a
 $ source setup.sh ${EDAQDOCKER}
 ```
-The ```setup.sh``` creates the ```docker-compose.yml``` based
-in some system information of the requirement dockerfiles-eudaqv1
+The ```setup.sh``` creates the ```docker-compose.yml``` and 
+```docker-compose.override.yml``` based in some system information
+of the requirement dockerfiles-eudaqv1. If there is no 
+[bdaq53](https://gitlab.cern.ch/silab/bdaq53) local repository in
+the system at ```$HOME/repos/bdaq53```, it clones in there.
 
 2. Download the automated build from the dockerhub: 
 ```bash
@@ -51,6 +54,15 @@ $ docker-compose run --rm onlineMon
 $ cd $BDAQ53DOCKER
 # Start the service setting up the development environment
 $ docker-compose run --rm devcode
+```
+
+### Production
+The production mode does not uses the local host machine 
+[bdaq53](https://gitlab.cern.ch/silab/bdaq53) repository but the downloaded
+inside the image (probably a pre-defined release). The service should be
+run with
+```bash
+$ docker-compose -f docker-compose.yml run --rm devcode
 ```
 
 

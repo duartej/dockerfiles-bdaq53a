@@ -75,36 +75,36 @@ NETWORKNAME=${EFOLDER}_$(python -c "with open('${PARSEFILE}') \
 
 DOCKERDIR=${PWD}
 
-## -- XXX Not by the moment
 ### 4. Download the code: 
-##CODEDIR=${HOME}/repos/bdaq53
-##mkdir -p ${CODEDIR} && cd ${CODEDIR}/.. ;
-##if [ "X$(command -v git)" == "X" ];
-##then
-##    echo "You will need to install git (https://git-scm.com/)"
-##    exit -1;
-##fi
-##
-##echo "Cloning BDAQ53 into : $(pwd)"
-##git clone  https://gitlab.cern.ch/silab/bdaq53.git bdaq53
-##
-##if [ "$?" -eq 128 ];
-##then
-##    echo "Repository already available at '${CODEDIR}'"
-##    echo "Remove it if you want to re-clone it"
-##else
-##    echo "Switch to eudaq branch"
-##    git checkout eudaq
-##fi
+BDAQCODE=${HOME}/repos/bdaq53
+mkdir -p ${BDAQCODE} && cd ${BDAQCODE}/.. ;
+if [ "X$(command -v git)" == "X" ];
+then
+    echo "You will need to install git (https://git-scm.com/)"
+    exit -1;
+fi
+
+echo "Trying to cloning BDAQ53 into : $(pwd)"
+echo "IGNORING 'fatal: destination path' error message"
+git clone  https://:@gitlab.cern.ch:8443/silab/bdaq53.git bdaq53
+if [ "$?" -eq 128 ];
+then
+    echo "Repository already available at '${BDAQCODE}'"
+    echo "Remove it if you want to re-clone it"
+else
+    echo "Switch to development branch"
+    git checkout -b development
+fi
 
 # 3. Fill the place-holders of the .templ-docker-compose.yml 
 cd ${DOCKERDIR}
 # -- copying relevant files
-for dc in .templ-docker-compose.yml;
+for dc in .templ-docker-compose.yml .templ-docker-compose.override.yml;
 do
     finalf=$(echo ${dc}|sed "s/.templ-//g")
     cp $dc $finalf
-    sed -i "s#@CODEDIR#${EUDAQCODE}#g" $finalf
+    sed -i "s#@CODEDIR_EUDAQ#${EUDAQCODE}#g" $finalf
+    sed -i "s#@CODEDIR_BDAQ#${BDAQCODE}#g" $finalf
     sed -i "s#@NETWORKNAME#${NETWORKNAME}#g" $finalf
 done
 
@@ -114,9 +114,10 @@ cat << EOF > .setupdone
 BDAQ53A integration docker image and services
 ---------------------------------------------
 Last setup performed at $(date)
-eudaqv1-ubuntu CONTEX DIR: $(realpath $1)
-EUDAQ LOCAL SOURCE CODE  : ${EUDAQCODE}
-NETWORK                  : ${NETWORKNAME}
+eudaqv1-ubuntu CONTEX  DIR: $(realpath $1)
+EUDAQ  LOCAL SOURCE CODE  : ${EUDAQCODE}
+BDAQ53 LOCAL SOURCE CODE  : ${BDAQCODE}
+NETWORK                   : ${NETWORKNAME}
 EOF
 cat .setupdone
 
