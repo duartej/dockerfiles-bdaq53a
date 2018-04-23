@@ -53,8 +53,12 @@ $ docker-compose run --rm onlineMon
 # Come back to the bdaq53 docker image folder (BDAQ53DOCKER)
 $ cd $BDAQ53DOCKER
 # Start the service setting up the development environment
-$ docker-compose run --rm devcode
+$ docker-compose run --rm devcode-bdaq53
+# In order to run an image of the container not using docker-compose,
+# for instance, to create a new devcode-bdaq53 
+$ docker run -it --rm -v /tmp/.X11-unix:/tmp/.X11-unix --mount type=bind,source=${HOME}/repos/eudaq,target=/eudaq/eudaq --mount type=bind,source=${HOME}/bdaq53,target=/bdaq53/bdaq53 -e DISPLAY=unix${DISPLAY} --network=dockerfileseudaqv1_static_network --ip=172.20.128.34 duartej/bdaq53
 ```
+
 
 ### Production
 The production mode does not uses the local host machine 
