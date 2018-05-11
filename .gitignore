@@ -2,3 +2,4 @@
 docker-compose.yml
 docker-compose.override.yml
 .setupdone
+.*.swp

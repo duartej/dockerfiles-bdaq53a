@@ -57,4 +57,5 @@ RUN git clone -b development https://gitlab.cern.ch/silab/bdaq53.git \
 # Activate conda environment and (re-)install the bdaq53 direcotory 
 # (case of bind-volumen mounted)
 ENTRYPOINT ["/bin/bash", "-c","source /bdaq53/miniconda/bin/activate \ 
-    && cd /bdaq53/bdaq53 && pip install -e . && /bin/bash"]
+    && cd /bdaq53/bdaq53 && && export PYTHONPATH=$PYTHONPATH:/bdaq53/bdaq53 \
+    && pip install -e . && /bin/bash"]
