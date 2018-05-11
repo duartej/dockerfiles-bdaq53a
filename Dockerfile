@@ -1,4 +1,4 @@
-FROM duartej/eudaqv1-ubuntu:latest
+FROM duartej/eudaqv1-ubuntu:eutelescope
 LABEL author="jorge.duarte.campderros@cern.ch" \ 
     version="0.1-alpha" \ 
     description="Docker image to integrate the RD53A chip \
