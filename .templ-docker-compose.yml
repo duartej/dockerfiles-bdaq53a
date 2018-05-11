@@ -5,10 +5,10 @@ services:
         build: 
             context: .
             dockerfile: Dockerfile
-        image: duartej/bdaq53
+        image: duartej/bdaq53:plain
 
     devcode-bdaq53: 
-        image: duartej/bdaq53
+        image: duartej/bdaq53:plain
         volumes: 
             - /tmp/.X11-unix:/tmp/.X11-unix
             - type: bind
