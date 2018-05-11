@@ -33,7 +33,7 @@ ENV PATH="${PATH}:${HOME}/.local/bin:/bdaq53/miniconda/bin"
 ENV PYTHONPATH="${HOME}/.local/lib:${PYTHONPATH}:/bdaq53/miniconda"
 RUN cd /bdaq53 \ 
     && /bin/bash miniconda2.sh -b -p /bdaq53/miniconda \ 
-    && /bin/bash -c "source activate" \ 
+    && . activate \ 
     && conda update -y -n base conda \
     && conda install -y \ 
        numpy \ 
