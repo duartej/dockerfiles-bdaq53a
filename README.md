@@ -2,9 +2,10 @@
 
 Creates the environment to develop the BDAQ53 readout
 system against the EUDAQ framework. 
-This image is based on [duartej/eudaqv1-ubuntu image](dockerfiles-eudaqv1) 
+This image is based on [duartej/eudaqv1-ubuntu image](dockerfiles-eudaqv1:plain) 
 so it is assume that the repository is present locally 
 (pointing to ```EDAQDOCKER```) and was installed and configured.
+Note this eudaqv1 image does not contain EUTelescope.
 
 ## Installation
 1. Clone the docker eudaq repository and configure it
@@ -21,13 +22,13 @@ the system at ```$HOME/repos/bdaq53```, it clones in there.
 
 2. Download the automated build from the dockerhub: 
 ```bash
-$ docker pull duartej/bdaq53
+$ docker pull duartej/bdaq53:plain
 ```
 or alternativelly you can build an image from the
 [Dockerfile](Dockerfile)
 ```bash
 # Using docker
-$ docker build github.com/duartej/bdaq53
+$ docker build github.com/duartej/bdaq53:plain
 # Using docker-compose
 $ docker-compose build bdaq53
 ```
