@@ -1,13 +1,13 @@
 version: "3.2"
 
 services:
-    bdaq53:eutelescope:
+    bdaq53:
         build: 
             context: .
             dockerfile: Dockerfile
         image: duartej/bdaq53:eutelescope
 
-    devcode-bdaq53:eutelescope: 
+    devcode-bdaq53: 
         image: duartej/bdaq53:eutelescope
         volumes: 
             - /tmp/.X11-unix:/tmp/.X11-unix
