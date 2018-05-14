@@ -47,10 +47,12 @@ RUN cd /bdaq53 \
        pyzmq \ 
        blosc \ 
        psutil \
+       cython \ 
     && pip install --upgrade pip
 # Not exist anymore, merged to development
 #RUN pip install --user git+https://gitlab.cern.ch/silab/bdaq53.git@development
-RUN git clone -b development https://gitlab.cern.ch/silab/bdaq53.git \
+RUN . /bdaq53/miniconda/bin/activate \ 
+    && git clone -b development https://gitlab.cern.ch/silab/bdaq53.git \
     && cd bdaq53 \ 
     && pip install -e . --user
 
