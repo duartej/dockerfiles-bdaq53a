@@ -63,7 +63,7 @@ The production mode does not uses the local host machine [bdaq53](https://gitlab
 repository but the downloaded inside the image (probably a pre-defined release). 
 The service should be run with
 ```bash
-$ docker-compose -f docker-compose.yml run --rm devcode
+$ docker-compose -f docker-compose.yml run --rm devcode-bda53
 ```
 
 
