@@ -85,15 +85,15 @@ then
 fi
 
 echo "Trying to cloning BDAQ53 into : $(pwd)"
-echo "IGNORING 'fatal: destination path' error message"
 git clone  https://:@gitlab.cern.ch:8443/silab/bdaq53.git bdaq53
 if [ "$?" -eq 128 ];
 then
     echo "Repository already available at '${BDAQCODE}'"
     echo "Remove it if you want to re-clone it"
+    echo "You can ignore the 'fatal: destination path' error message"
 else
     echo "Switch to development branch"
-    git checkout -b development
+    git checkout development
 fi
 
 # 3. Fill the place-holders of the .templ-docker-compose.yml 
