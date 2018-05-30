@@ -93,6 +93,7 @@ then
     echo "You can ignore the 'fatal: destination path' error message"
 else
     echo "Switch to development branch"
+    cd bdaq53
     git checkout development
 fi
 
