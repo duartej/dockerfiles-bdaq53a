@@ -1,6 +1,6 @@
 FROM duartej/eutelescope:latest
 LABEL author="jorge.duarte.campderros@cern.ch" \ 
-    version="0.1-alpha" \ 
+    version="1.0-cmd_az_integration" \ 
     description="Docker image to integrate the RD53A chip \
     using the bdaq53 readout system into EUDAQ"
 
@@ -52,7 +52,9 @@ RUN cd /bdaq53 \
 # Not exist anymore, merged to development
 #RUN pip install --user git+https://gitlab.cern.ch/silab/bdaq53.git@development
 RUN . /bdaq53/miniconda/bin/activate \ 
-    && git clone -b development https://gitlab.cern.ch/silab/bdaq53.git \
+    #&& git clone -b development https://gitlab.cern.ch/silab/bdaq53.git \
+    # PROVISIONAL --- 
+    && git clone -b cmd_az_integration https://gitlab.cern.ch/silab/bdaq53.git \
     && cd bdaq53 \ 
     && pip install -e . --user
 
