@@ -19,7 +19,32 @@ services:
         networks:
             default:
                 ipv4_address: 172.20.128.30
+    
+    scans-10: 
+        image: duartej/bdaq53:eutelescope
+        volumes: 
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - type: bind
+              source: @CODEDIR_BDAQ/bdaq53/bdaq53/scans/output_data_10
+              target: /bdaq53/bdaq53/bdaq53/scans/output_data
+        environment:
+            - DISPLAY=unix${DISPLAY}
+        networks:
+            default:
+                ipv4_address: 172.20.128.34
 
+    scans-16: 
+        image: duartej/bdaq53:eutelescope
+        volumes: 
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - type: bind
+              source: @CODEDIR_BDAQ/bdaq53/bdaq53/scans/output_data_16
+              target: /bdaq53/bdaq53/bdaq53/scans/output_data
+        environment:
+            - DISPLAY=unix${DISPLAY}
+        networks:
+            default:
+                ipv4_address: 172.20.128.35
 networks:
     default:
         external:

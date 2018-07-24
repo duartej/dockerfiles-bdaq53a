@@ -54,7 +54,7 @@ RUN cd /bdaq53 \
 RUN . /bdaq53/miniconda/bin/activate \ 
     #&& git clone -b development https://gitlab.cern.ch/silab/bdaq53.git \
     # PROVISIONAL --- 
-    && git clone -b cmd_az_integration https://gitlab.cern.ch/silab/bdaq53.git \
+    && git clone -b cmd_az_integration https://gitlab.cern.ch/sifca/bdaq53.git \
     && cd bdaq53 \ 
     && pip install -e . --user
 

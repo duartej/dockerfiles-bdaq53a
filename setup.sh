@@ -90,7 +90,7 @@ then
 fi
 
 echo "Trying to cloning BDAQ53 into : $(pwd)"
-git clone  https://:@gitlab.cern.ch:8443/silab/bdaq53.git bdaq53
+git clone  https://:@gitlab.cern.ch:8443/sifca/bdaq53.git bdaq53
 if [ "$?" -eq 128 ];
 then
     echo "Repository already available at '${BDAQCODE}'"
@@ -102,6 +102,12 @@ else
     git checkout development
 fi
 
+# 2.A. Create the needed directories: output_data when using more than
+#      one Kintex
+OUTPUTDIR_10=${BDAQCODE}/bdaq53/scans/output_data_10
+OUTPUTDIR_16=${BDAQCODE}/bdaq53/scans/output_data_16
+mkdir -p ${OUTPUTDIR_10}
+mkdir -p ${OUTPUTDIR_16}
 # 3. Fill the place-holders of the .templ-docker-compose.yml 
 cd ${DOCKERDIR}
 # -- copying relevant files
@@ -123,6 +129,8 @@ Last setup performed at $(date)
 eudaqv1-ubuntu CONTEX  DIR: $(realpath $1)
 EUDAQ  LOCAL SOURCE CODE  : ${EUDAQCODE}
 BDAQ53 LOCAL SOURCE CODE  : ${BDAQCODE}
+BDAQ53 OUTPUTs scans-10   : ${OUTPUTDIR_10}
+BDAQ53 OUTPUTs scans-16   : ${OUTPUTDIR_16}
 NETWORK                   : ${NETWORKNAME}
 EOF
 cat .setupdone
