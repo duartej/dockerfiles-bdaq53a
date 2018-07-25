@@ -25,7 +25,7 @@ services:
         volumes: 
             - /tmp/.X11-unix:/tmp/.X11-unix
             - type: bind
-              source: @CODEDIR_BDAQ/bdaq53/bdaq53/scans/output_data_10
+              source: @CODEDIR_BDAQ/bdaq53/scans/output_data_10
               target: /bdaq53/bdaq53/bdaq53/scans/output_data
         environment:
             - DISPLAY=unix${DISPLAY}
@@ -38,7 +38,7 @@ services:
         volumes: 
             - /tmp/.X11-unix:/tmp/.X11-unix
             - type: bind
-              source: @CODEDIR_BDAQ/bdaq53/bdaq53/scans/output_data_16
+              source: @CODEDIR_BDAQ/bdaq53/scans/output_data_16
               target: /bdaq53/bdaq53/bdaq53/scans/output_data
         environment:
             - DISPLAY=unix${DISPLAY}
