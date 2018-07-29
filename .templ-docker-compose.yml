@@ -29,6 +29,13 @@ services:
               target: /bdaq53/bdaq53/bdaq53/scans/output_data
         environment:
             - DISPLAY=unix${DISPLAY}
+            - PC=${HOSTNAME}
+        entrypoint: "/bin/bash -c 'export PYTHONPATH=$PYTHONPATH:/bdaq53/bdaq53 \
+                      && source /bdaq53/miniconda/bin/activate \
+                      && cd /bdaq53/bdaq53 \ 
+                      && pip install -e . \
+                      && . scan_service_init.sh scans-10 \
+                      && /bin/bash'"
         networks:
             default:
                 ipv4_address: 172.20.128.34
@@ -42,6 +49,13 @@ services:
               target: /bdaq53/bdaq53/bdaq53/scans/output_data
         environment:
             - DISPLAY=unix${DISPLAY}
+            - PC=${HOSTNAME}
+        entrypoint: "/bin/bash -c 'export PYTHONPATH=$PYTHONPATH:/bdaq53/bdaq53 \
+                      && source /bdaq53/miniconda/bin/activate \
+                      && cd /bdaq53/bdaq53 \ 
+                      && pip install -e . \
+                      && . scan_service_init.sh scans-16 \
+                      && /bin/bash'"
         networks:
             default:
                 ipv4_address: 172.20.128.35
