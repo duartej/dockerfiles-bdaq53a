@@ -30,6 +30,8 @@ services:
         environment:
             - DISPLAY=unix${DISPLAY}
             - PC=${HOSTNAME}
+        extra_hosts:
+            - "FHLAIDA:192.168.5.2"
         entrypoint: "/bin/bash -c 'export PYTHONPATH=$PYTHONPATH:/bdaq53/bdaq53 \
                       && source /bdaq53/miniconda/bin/activate \
                       && cd /bdaq53/bdaq53 \ 
@@ -50,6 +52,8 @@ services:
         environment:
             - DISPLAY=unix${DISPLAY}
             - PC=${HOSTNAME}
+        extra_hosts:
+            - "FHLAIDA:192.168.5.2"
         entrypoint: "/bin/bash -c 'export PYTHONPATH=$PYTHONPATH:/bdaq53/bdaq53 \
                       && source /bdaq53/miniconda/bin/activate \
                       && cd /bdaq53/bdaq53 \ 

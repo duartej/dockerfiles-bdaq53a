@@ -5,11 +5,11 @@
 if [ "X$1" == "Xscans-10" ];
 then
     KINTEX=10
-    MODIFY_IP=true
+    MODIFY_IP=1
 elif [ "X$1" == "Xscans-16" ];
 then
     KINTEX=16
-    MODIFY_IP=false
+    MODIFY_IP=0
 else
     echo "Initialization script should not be invoked with '$1'" 
     exit -1
@@ -46,18 +46,18 @@ echo "###########################################"
 
 
 # Rename the command line
-_PS1="\[\033[01;32m\][K${KINTEX}-PC${PC}::DUT${DUT}]\[\033[00m\]$ "
+_PS1="\[\033[01;32m\][K${KINTEX}-PC${PC}::DUT${DUT}]\[\033[00m\][ \W]$ "
 echo "PS1=\"${_PS1}\"" >> $HOME/.bashrc
 
 # Substitute IP addresses if needed
-if [ ${MODIFY_IP} ]; 
+if [ ${MODIFY_IP} -eq 1 ]; 
 then  
     cd /bdaq53/bdaq53/bdaq53
     for filemod in bdaq53.yaml rbcp.py;
     do 
-        sed -i -e 's/192.168.10.16/192.168.10.10/g' ${filemod}
+        sed -i -e 's/\.10\.16/\.10\.10/g' ${filemod}
     done 
-    sed -i -e 's/10,16/10,10/g' rbcp.py
+    sed -i -e 's/10\,16/10\,10/g' rbcp.py
 fi
 
 # Define a quick alias to launch 

@@ -25,11 +25,9 @@ RUN mkdir -p /bdaq53 \
     && wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O /bdaq53/miniconda2.sh \
     && chown -R eudaquser:eudaquser /bdaq53 \  
     && chown -R eudaquser:eudaquser /eudaq 
-# -- Just for the TB mode, assuming SPS-H6B area
-RUN echo "192.168.5.2       FHLAIDA" >> /etc/hosts
+
 # Initialization for the scan (TB) services
 COPY scan_service_init.sh /usr/bin/scan_service_init.sh
-
 
 # Change to user and conda installation
 USER eudaquser
