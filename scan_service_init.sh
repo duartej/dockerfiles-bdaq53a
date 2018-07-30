@@ -28,8 +28,10 @@ do
         [ "X$DUT" != "X2" ] &&
         [ "X$DUT" != "X3" ]; 
   then
-      echo "\[\033[01;31m\]Invalid DUT ID: '${DUT}'\[\033[00m\]"
+      printf "\033[01;31mInvalid DUT ID: ['${DUT}']\033[00m\n"
+      echo "Exit the container..."
       finished=false
+      exit -1
   else
       finished=true
   fi
