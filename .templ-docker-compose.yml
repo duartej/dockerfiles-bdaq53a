@@ -58,7 +58,7 @@ services:
                       && cd /bdaq53/bdaq53 \ 
                       && pip install -e . \
                       && . scan_service_init.sh scans-16 \
-                      && cd scans
+                      && cd bdaq53/scans \ 
                       && /bin/bash'"
         networks:
             default:
