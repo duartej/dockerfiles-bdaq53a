@@ -1,10 +1,12 @@
 #!/bin/bash
 
+IP_3F=10
 # Some useful functions
 # -- Name of the run control   
-if [ "X$1" == "Xscans-10" ];
+if [ "X$1" == "Xscans-19" ];
 then
-    KINTEX=10
+    KINTEX=19
+    IP_3F=13
     MODIFY_IP=1
 elif [ "X$1" == "Xscans-16" ];
 then
@@ -42,7 +44,7 @@ echo "###########################################"
 echo "+ IMAGE: duartej/bdaq53"
 echo "+ CONTAINER ID: ${HOSTNAME}"
 echo "+ MODE: scans-${KINTEX}"
-echo "+-- KINTEX PORT IP: 192.168.10.${KINTEX}"
+echo "+-- KINTEX PORT IP: 192.168.${IP_3F}.${KINTEX}"
 echo "  +- DUT: ${DUT}"
 echo "###########################################"
 
@@ -55,11 +57,10 @@ echo "PS1=\"${_PS1}\"" >> $HOME/.bashrc
 if [ ${MODIFY_IP} -eq 1 ]; 
 then  
     cd /bdaq53/bdaq53/bdaq53
-    for filemod in bdaq53.yaml rbcp.py;
+    for filemod in bdaq53.yaml;
     do 
-        sed -i -e 's/\.10\.16/\.10\.10/g' ${filemod}
+        sed -i -e 's/\.10\.16/\.13\.19/g' ${filemod}
     done 
-    sed -i -e 's/10\,16/10\,10/g' rbcp.py
 fi
 
 # Define a quick alias to launch 
