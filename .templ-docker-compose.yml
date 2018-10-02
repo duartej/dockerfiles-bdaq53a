@@ -25,7 +25,7 @@ services:
         volumes: 
             - /tmp/.X11-unix:/tmp/.X11-unix
             - type: bind
-              source: @CODEDIR_BDAQ/bdaq53/scans/output_data_10
+              source: @CODEDIR_BDAQ/bdaq53/scans/output_data_19
               target: /bdaq53/bdaq53/bdaq53/scans/output_data
         environment:
             - DISPLAY=unix${DISPLAY}
@@ -35,7 +35,7 @@ services:
         entrypoint: "/bin/bash -c 'source /bdaq53/miniconda/bin/activate \
                       && cd /bdaq53/bdaq53 \ 
                       && pip install -e . \
-                      && . scan_service_init.sh scans-10 \
+                      && . scan_service_init.sh scans-19 \
                       && cd scans \
                       && /bin/bash'"
         networks:
