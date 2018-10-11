@@ -106,8 +106,10 @@ fi
 #      one Kintex
 OUTPUTDIR_10=${BDAQCODE}/bdaq53/scans/output_data_10
 OUTPUTDIR_16=${BDAQCODE}/bdaq53/scans/output_data_16
+OUTPUTDIR_16=${BDAQCODE}/bdaq53/scans/output_data_19
 mkdir -p ${OUTPUTDIR_10}
 mkdir -p ${OUTPUTDIR_16}
+mkdir -p ${OUTPUTDIR_19}
 # 3. Fill the place-holders of the .templ-docker-compose.yml 
 cd ${DOCKERDIR}
 # -- copying relevant files
@@ -129,8 +131,9 @@ Last setup performed at $(date)
 eudaqv1-ubuntu CONTEX  DIR: $(realpath $1)
 EUDAQ  LOCAL SOURCE CODE  : ${EUDAQCODE}
 BDAQ53 LOCAL SOURCE CODE  : ${BDAQCODE}
-BDAQ53 OUTPUTs scans-10   : ${OUTPUTDIR_10}
 BDAQ53 OUTPUTs scans-16   : ${OUTPUTDIR_16}
+BDAQ53 OUTPUTs scans-19   : ${OUTPUTDIR_19}
+BDAQ53 OUTPUTs scans-10 [TO BE DEPRECATED] : ${OUTPUTDIR_10}
 NETWORK                   : ${NETWORKNAME}
 EOF
 cat .setupdone

@@ -20,7 +20,7 @@ services:
             default:
                 ipv4_address: 172.20.128.30
     
-    scans-10: 
+    scans-19: 
         image: duartej/bdaq53:eutelescope
         volumes: 
             - /tmp/.X11-unix:/tmp/.X11-unix
