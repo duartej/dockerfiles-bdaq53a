@@ -1,16 +1,15 @@
 #!/bin/bash
 
+KINTEX=12
 IP_3F=10
 # Some useful functions
 # -- Name of the run control   
-if [ "X$1" == "Xscans-19" ];
+if [ "X$1" == "Xscans-USB" ];
 then
-    KINTEX=19
-    IP_3F=13
+    IP_3F=11
     MODIFY_IP=1
-elif [ "X$1" == "Xscans-16" ];
+elif [ "X$1" == "Xscans-RJ45" ];
 then
-    KINTEX=16
     MODIFY_IP=0
 else
     echo "Initialization script should not be invoked with '$1'" 
@@ -43,14 +42,14 @@ done
 echo "###########################################"
 echo "+ IMAGE: duartej/bdaq53"
 echo "+ CONTAINER ID: ${HOSTNAME}"
-echo "+ MODE: scans-${KINTEX}"
+echo "+ MODE: ${1}"
 echo "+-- KINTEX PORT IP: 192.168.${IP_3F}.${KINTEX}"
 echo "  +- DUT: ${DUT}"
 echo "###########################################"
 
 
 # Rename the command line
-_PS1="\[\033[01;32m\][K${KINTEX}-PC${PC}::DUT${DUT}]\[\033[00m\][ \W]$ "
+_PS1="\[\033[01;32m\][K${IP_3F}.${KINTEX}-PC${PC}::DUT${DUT}]\[\033[00m\][ \W]$ "
 echo "PS1=\"${_PS1}\"" >> $HOME/.bashrc
 
 # Substitute IP addresses if needed
@@ -59,7 +58,7 @@ then
     cd /bdaq53/bdaq53/bdaq53
     for filemod in bdaq53.yaml;
     do 
-        sed -i -e 's/\.10\.16/\.13\.19/g' ${filemod}
+        sed -i -e 's/\.10\.12/\.11\.12/g' ${filemod}
     done 
 fi
 
