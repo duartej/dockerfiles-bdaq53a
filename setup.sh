@@ -23,7 +23,7 @@ then
     echo "https://github.com/duartej/dockerfiles-eudaqv1"
     echo "This image cannot be used without the eudaqv1 image"
     print_usage
-    exit -1
+    return -1
 elif [ -f $1/initialize_service.sh ];
 then
     if [ ! -f $1/.setupdone ];
@@ -32,7 +32,7 @@ then
         echo "Do previously in the '$1' directory:" 
         echo "$ /setup"
         print_usage
-        exit -2
+        return -2
     fi
 else
     echo "Needed the path to the local installation of"
@@ -40,14 +40,14 @@ else
     echo "The introduced path is not the repository or is malformed"
     echo "Read path: '$1'"
     print_usage
-    exit -3
+    return -3
 fi
 
 # 1. Check it is running as regular user
 if [ "${EUID}" -eq 0 ];
 then
     echo "Do not run this as root"
-    exit -2
+    return -2
 fi
 
 # 2. Check if the setup was run:
@@ -56,7 +56,7 @@ then
     echo "DO NOT DOING ANYTHING, THE SETUP WAS ALREADY DONE:"
     echo "=================================================="
     cat .setupdone
-    exit -3
+    return -3
 fi
 
 
@@ -81,7 +81,7 @@ mkdir -p ${BDAQCODE} && cd ${BDAQCODE}/.. ;
 if [ "X$(command -v git)" == "X" ];
 then
     echo "You will need to install git (https://git-scm.com/)"
-    exit -1;
+    return -1;
 fi
 
 echo "Trying to cloning BDAQ53 into : $(pwd)"
