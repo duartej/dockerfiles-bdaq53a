@@ -19,6 +19,51 @@ services:
         networks:
             default:
                 ipv4_address: 172.20.128.30
+    
+    scans-USB: 
+        image: duartej/bdaq53:plain
+        volumes: 
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - type: bind
+              source: @CODEDIR_BDAQ/bdaq53/scans/output_data_USB
+              target: /bdaq53/bdaq53/bdaq53/scans/output_data
+        environment:
+            - DISPLAY=unix${DISPLAY}
+            - PC=${PCNAME}
+        extra_hosts:
+            - "FHLAIDA:192.168.5.2"
+        entrypoint: "/bin/bash -c 'source /bdaq53/miniconda/bin/activate \
+                      && cd /bdaq53/bdaq53 \ 
+                      && python setup.py develop \
+                      && . scan_service_init.sh scans-USB \
+                      && cd scans \
+                      && /bin/bash'"
+        networks:
+            default:
+                ipv4_address: 172.20.128.34
+
+    scans-RJ45: 
+        image: duartej/bdaq53:plain
+        volumes: 
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - type: bind
+              source: @CODEDIR_BDAQ/bdaq53/scans/output_data_RJ45
+              target: /bdaq53/bdaq53/bdaq53/scans/output_data
+        environment:
+            - DISPLAY=unix${DISPLAY}
+            - PC=${PCNAME}
+        extra_hosts:
+            - "FHLAIDA:192.168.5.2"
+        entrypoint: "/bin/bash -c 'source /bdaq53/miniconda/bin/activate \
+                      && cd /bdaq53/bdaq53 \ 
+                      && conda install -y pip \
+                      && python setup.py develop \
+                      && . scan_service_init.sh scans-RJ45 \
+                      && cd bdaq53/scans \ 
+                      && /bin/bash'"
+        networks:
+            default:
+                ipv4_address: 172.20.128.35
 
 networks:
     default:
