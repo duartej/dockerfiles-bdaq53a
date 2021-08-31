@@ -56,6 +56,10 @@ RUN . /bdaq53/miniconda/bin/activate \
     && cd bdaq53 \ 
     && python setup.py develop
 
+# TBR as soon as is fixed in the original code: 
+# Remove a line
+RUN sed -i "s/-' + module_name/'/g" /bdaq53/bdaq53/bdaq53/scans/scan_eudaq.py
+
 # Activate conda environment and (re-)install the bdaq53 direcotory 
 # (case of bind-volumen mounted)
 ENTRYPOINT ["/bin/bash", "-c","source /bdaq53/miniconda/bin/activate \ 
