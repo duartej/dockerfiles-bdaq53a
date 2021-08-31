@@ -34,7 +34,6 @@ services:
             - "FHLAIDA:192.168.5.2"
         entrypoint: "/bin/bash -c 'source /bdaq53/miniconda/bin/activate \
                       && cd /bdaq53/bdaq53 \ 
-                      && python setup.py develop \
                       && . scan_service_init.sh scans-USB \
                       && cd scans \
                       && /bin/bash'"
@@ -56,8 +55,6 @@ services:
             - "FHLAIDA:192.168.5.2"
         entrypoint: "/bin/bash -c 'source /bdaq53/miniconda/bin/activate \
                       && cd /bdaq53/bdaq53 \ 
-                      && conda install -y pip \
-                      && python setup.py develop \
                       && . scan_service_init.sh scans-RJ45 \
                       && cd bdaq53/scans \ 
                       && /bin/bash'"
