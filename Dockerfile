@@ -1,6 +1,6 @@
 FROM duartej/eudaqv1:latest
 LABEL author="jorge.duarte.campderros@cern.ch" \ 
-    version="v1.6-plain" \ 
+    version="v1.7-plain" \ 
     description="Docker image to integrate the RD53A chip \
     using the bdaq53 readout system into EUDAQ"
 
@@ -52,7 +52,7 @@ RUN cd /bdaq53 \
 
 # The bdaq53 software v.1.6
 RUN . /bdaq53/miniconda/bin/activate \ 
-    && git clone -b v1.6 https://gitlab.cern.ch/silab/bdaq53.git \
+    && git clone -b v1.7 https://gitlab.cern.ch/silab/bdaq53.git \
     && cd bdaq53 \ 
     && python setup.py develop
 
